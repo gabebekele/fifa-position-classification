@@ -211,12 +211,12 @@ Several outfield roles share combinations of attributes such as pace, passing, d
 
 ## Error Analysis
 
-Final confusion matrices are included in the `figures/` directory:
+Final confusion matrices are included in the `figures/confusion_matrix/` directory:
 
-- `confusion_matrix_raw_data.png`
-- `confusion_matrix_pca.png`
-- `confusion_matrix_kernel_pca.png`
-- `confusion_matrix_lle.png`
+- `raw_data.png`
+- `pca.png`
+- `kernel_pca.png`
+- `lle.png`
 
 These figures show which positional groups are most frequently confused and how similar the error patterns are across the four feature representations.
 
@@ -241,13 +241,14 @@ fifa-position-classification/
 ├── data/
 │   └── players_21.csv
 ├── figures/
+│   ├── confusion_matrix/
+│   │   ├── raw_data.png
+│   │   ├── confusion_matrix_pca.png
+│   │   ├── confusion_matrix_kernel_pca.png
+│   │   └── confusion_matrix_lle.png
 │   ├── model_performance_comparison.png
 │   ├── pca_explained_variance.png
-│   ├── per_class_f1_comparison.png
-│   ├── confusion_matrix_raw_data.png
-│   ├── confusion_matrix_pca.png
-│   ├── confusion_matrix_kernel_pca.png
-│   └── confusion_matrix_lle.png
+│   └── per_class_f1_comparison.png
 ├── notebooks/
 │   └── fifa_position_classification.ipynb
 ├── .gitignore
@@ -369,11 +370,11 @@ Held-Out Test Evaluation
 ## Limitations
 
 - The six target classes simplify the more nuanced positional roles used in football.
-- FIFA ratings are video-game attributes rather than direct player-tracking or physical-performance measurements.
-- KNN performance depends strongly on scaling and the geometry of the feature space.
-- The strongest dimensionality-reduction configurations retain 50 of 52 dimensions, so they provide little practical compression.
-- Raw/PCA and Kernel PCA/LLE use different cross-validation fold counts because of computational cost, so small differences in CV scores should not be interpreted as direct model rankings.
-
+- FIFA ratings are video game attributes rather than direct measurements of real-world player performance.
+- KNN performance is sensitive to feature scaling and the geometry of the feature space.
+- The best-performing dimensionality reduction configurations retain 50 of the original 52 dimensions, providing little practical compression.
+- Different cross-validation fold counts were used for Raw Data/PCA and Kernel PCA/LLE due to computational cost. Therefore, small differences in cross-validation scores should be interpreted cautiously.
+- The inclusion of goalkeeper reflexes and differences in missing attribute values may make goalkeepers easier to distinguish from outfield players.
 ---
 
 ## Dataset License
